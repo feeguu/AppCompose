@@ -25,8 +25,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             // Exibe uma lista de elementos
             Column() {
+                // Renderizando com loop
                 repeat(20) {
-                    MessageCard(Message("Pascal", "Baskas"))
+                    MessageCard(name="Gustavo")
                 }
             }
         }
@@ -35,42 +36,8 @@ class MainActivity : ComponentActivity() {
 // Criação de um tipo Message
 data class Message(val author: String, val body: String)
 
+// Criação de um componente
 @Composable
-fun MessageCard(msg: Message) {
-    // Criação de uma view em linha
-    Row(
-        modifier= Modifier
-            .fillMaxWidth() // Largura pra ocupar 100% da tela
-            .height(90.dp)
-            .border(0.5.dp, color = Color.LightGray)
-            .padding(horizontal = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    )
-
-    {
-
-        // Imagem
-        Image(
-            //Imagem a ser mostrada
-            painter = painterResource(R.drawable.pascal),
-            contentDescription = "Usuário",
-            contentScale = ContentScale.Crop,
-            // Estilização da imagem
-            modifier = Modifier
-                // Set image size to 40 dp
-                .size(60.dp)
-                // Clip image to be shaped as a circle
-                .clip(CircleShape)
-        )
-        // Espaçamento
-        Spacer(modifier = Modifier.width(16.dp))
-        //View em coluna
-        Column {
-            Text(msg.author)
-
-            Spacer(modifier = Modifier.width(8.dp))
-
-            Text(msg.body)
-        }
-    }
+fun MessageCard(name: String) {
+    Text(text = "Hello $name!")
 }
